@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PageObject.Factory", "PageObject.Factory\PageObject.Factory.csproj", "{A088A211-736D-48C8-8D8B-95F31064E975}"
 EndProject
@@ -33,6 +33,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.2 - WebDriver Local", "1.2 - WebDriver Local", "{9486D3D4-6D34-480F-B888-BBA35E070C59}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.3 - WebDriver SauceLabs", "1.3 - WebDriver SauceLabs", "{E2FD6B38-0FA3-4AC3-9489-6789757FFDDD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - TestData", "4 - TestData", "{5B20E5C4-F89E-4338-9D48-484594B21355}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestData.OpenXml", "TestData.OpenXml\TestData.OpenXml.csproj", "{22371007-41A1-47CB-BF5D-CF7729555E4D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -68,6 +72,10 @@ Global
 		{EDAEF234-B288-4B18-9F32-99BD161EB7D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EDAEF234-B288-4B18-9F32-99BD161EB7D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EDAEF234-B288-4B18-9F32-99BD161EB7D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22371007-41A1-47CB-BF5D-CF7729555E4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22371007-41A1-47CB-BF5D-CF7729555E4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22371007-41A1-47CB-BF5D-CF7729555E4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22371007-41A1-47CB-BF5D-CF7729555E4D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -83,5 +91,6 @@ Global
 		{54937127-D64A-4274-91F8-B8ECBB64D805} = {62916BA3-90DE-41A3-95A1-C81498C99546}
 		{9486D3D4-6D34-480F-B888-BBA35E070C59} = {62916BA3-90DE-41A3-95A1-C81498C99546}
 		{E2FD6B38-0FA3-4AC3-9489-6789757FFDDD} = {62916BA3-90DE-41A3-95A1-C81498C99546}
+		{22371007-41A1-47CB-BF5D-CF7729555E4D} = {5B20E5C4-F89E-4338-9D48-484594B21355}
 	EndGlobalSection
 EndGlobal

@@ -36,7 +36,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.3 - WebDriver SauceLabs",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - TestData", "4 - TestData", "{5B20E5C4-F89E-4338-9D48-484594B21355}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestData.Connector", "TestData.OpenXml\TestData.Connector.csproj", "{22371007-41A1-47CB-BF5D-CF7729555E4D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestData.OpenXml", "TestData.OpenXml\TestData.OpenXml.csproj", "{22371007-41A1-47CB-BF5D-CF7729555E4D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

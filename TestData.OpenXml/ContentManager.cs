@@ -4,17 +4,21 @@ using PageObject.Models;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TestData.OpenXml.Contracts;
+using System.IO;
 
 namespace TestData.OpenXml
 {
-    public class ContentManager
+    public class ContentManager : IContentManager
     {
-        public static ICollection<Customer> GetCustomerListFromXls()
+        private const string _xlsFilename = "POModelsTemplate.xlsx";
+
+        public ICollection<Customer> GetCustomerListFromXls()
         {
             ICollection<Customer> customersCollection;
             try
             {
-                var excelPath = "excelpath";
+                string excelPath = Path.Combine(Environment.CurrentDirectory, @"Data In\", _xlsFilename);
                 var excelCustomerDt = OpenXmlConnection.ReadExcelSheet(excelPath, "Customer");
                 customersCollection = OpenXmlConnection.ExcelMappingToCustomer(excelCustomerDt);
             }
@@ -25,12 +29,12 @@ namespace TestData.OpenXml
             return customersCollection;
         }
 
-        public static ICollection<User> GetUserListFromXls()
+        public ICollection<User> GetUserListFromXls()
         {
             ICollection<User> usersCollection;
             try
             {
-                var excelPath = "excelpath";
+                string excelPath = Path.Combine(Environment.CurrentDirectory, @"Data In\", _xlsFilename);
                 var excelUserDt = OpenXmlConnection.ReadExcelSheet(excelPath, "User");
                 usersCollection = OpenXmlConnection.ExcelMappingToUser(excelUserDt);
             }

@@ -45,7 +45,7 @@ namespace UserStories.AcceptanceTest.Steps
         [When(@"The user logs with a valid user")]
         public void WhenTheUserLogsWithAValidUser()
         {
-            this._homePage.LoginUser("mngr70164", "EjerYjY");
+            this._homePage.LoginUser("mngr78423", "mAqagyz");
         }
 
         /// <summary>

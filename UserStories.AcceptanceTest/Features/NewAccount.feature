@@ -10,5 +10,5 @@ Scenario Outline: The user can creates a new account
 
     Examples: 
     | customerId | accountType | initialDeposit |
-    | 29307      | Current     | 500            |
-    | 29307      | Savings     | 500            |
+    | 72218      | Current     | 500            |
+    | 72218      | Savings     | 500            |

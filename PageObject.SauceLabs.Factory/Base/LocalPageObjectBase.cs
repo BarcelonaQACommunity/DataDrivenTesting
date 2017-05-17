@@ -2,13 +2,13 @@
 using OpenQA.Selenium;
 using PageObject.Factory.Contracts.Base.Contracts;
 
-namespace PageObject.SauceLabs.Factory.Base
+namespace PageObject.Local.Factory.Base
 {
     /// <summary>
     /// The Page Object base.
     /// </summary>
     /// <seealso cref="PageObject.Factory.Contracts.Base.Contracts.IPageObjectBase" />
-    public class SlPageObjectBase : IPageObjectBase
+    public class LocalPageObjectBase : IPageObjectBase
     {
         /// <summary>
         /// The web driver
@@ -16,9 +16,9 @@ namespace PageObject.SauceLabs.Factory.Base
         protected IWebDriver WebDriver;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SlPageObjectBase"/> class.
+        /// Initializes a new instance of the <see cref="LocalPageObjectBase"/> class.
         /// </summary>
-        public SlPageObjectBase()
+        public LocalPageObjectBase()
         {
             this.WebDriver = SetUpWebDriver.SetUpWebDriver.WebDriver;
         }
@@ -28,7 +28,7 @@ namespace PageObject.SauceLabs.Factory.Base
         /// </summary>
         protected void SetUpWebDriverBase()
         {
-            SetUpWebDriver.SetUpWebDriver.SetUpSauceLabsWebDriver(string.Empty);
+            SetUpWebDriver.SetUpWebDriver.SetUpChromeWebDriver();
             this.WebDriver = SetUpWebDriver.SetUpWebDriver.WebDriver;
             this.WebDriver.Manage().Cookies.DeleteAllCookies();
             this.WebDriver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
@@ -39,7 +39,7 @@ namespace PageObject.SauceLabs.Factory.Base
         /// </summary>
         protected void SetUpWebDriverBase(string currentScenario)
         {
-            SetUpWebDriver.SetUpWebDriver.SetUpSauceLabsWebDriver(currentScenario);
+            SetUpWebDriver.SetUpWebDriver.SetUpChromeWebDriver();
             this.WebDriver = SetUpWebDriver.SetUpWebDriver.WebDriver;
             this.WebDriver.Manage().Cookies.DeleteAllCookies();
             this.WebDriver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));

@@ -3,15 +3,15 @@ using System.Threading;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using PageObject.Factory.Contracts.Pages.Contracts;
-using PageObject.SauceLabs.Factory.Base;
+using PageObject.Local.Factory.Base;
 
-namespace PageObject.SauceLabs.Factory.Pages
+namespace PageObject.Local.Factory.Pages
 {
     /// <summary>
     /// The sl manager page.
     /// </summary>
-    /// <seealso cref="SlPageObjectBase" />
-    public class SLManagerPage : SlPageObjectBase, IManagerPage
+    /// <seealso cref="LocalPageObjectBase" />
+    public class LocalManagerPage : LocalPageObjectBase, IManagerPage
     {
         #region .: Selenium WebDriver Elements :.
 
@@ -42,7 +42,7 @@ namespace PageObject.SauceLabs.Factory.Pages
         /// <summary>
         /// Initializes a new instance of the <see cref="SLManagerPage"/> class.
         /// </summary>
-        public SLManagerPage()
+        public LocalManagerPage()
         {
             PageFactory.InitElements(this.WebDriver, this);
         }

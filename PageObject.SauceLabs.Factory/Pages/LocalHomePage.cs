@@ -2,9 +2,9 @@
 using OpenQA.Selenium.Support.PageObjects;
 using PageObject.Factory.Contracts.Pages.Contracts;
 using PageObject.Models;
-using PageObject.SauceLabs.Factory.Base;
+using PageObject.Local.Factory.Base;
 
-namespace PageObject.SauceLabs.Factory.Pages
+namespace PageObject.Local.Factory.Pages
 {
     using System;
     using System.Threading;
@@ -13,9 +13,9 @@ namespace PageObject.SauceLabs.Factory.Pages
     /// The Home Page.
     /// http://demo.guru99.com/V4/index.php
     /// </summary>
-    /// <seealso cref="SlPageObjectBase" />
+    /// <seealso cref="LocalPageObjectBase" />
     /// <seealso cref="PageObject.Factory.Contracts.Pages.Contracts.IHomePage" />
-    public class SLHomePage : SlPageObjectBase, IHomePage
+    public class LocalHomePage : LocalPageObjectBase, IHomePage
     {
         // The URL.
         private const string WebDirection = "http://demo.guru99.com/V4/index.php";
@@ -39,7 +39,7 @@ namespace PageObject.SauceLabs.Factory.Pages
         /// <summary>
         /// Initializes a new instance of the <see cref="SLHomePage"/> class.
         /// </summary>
-        public SLHomePage(string currentScenario)
+        public LocalHomePage(string currentScenario)
         {
             this.SetUpWebDriverBase(currentScenario);
             PageFactory.InitElements(this.WebDriver, this);
@@ -93,9 +93,9 @@ namespace PageObject.SauceLabs.Factory.Pages
         /// <summary>
         /// Closes the web driver.
         /// </summary>
-        public void CloseWebDriver(bool isPassed)
+        public void CloseWebDriver()
         {
-            SetUpWebDriver.SetUpWebDriver.CloseWebDriver(true, isPassed);
+            SetUpWebDriver.SetUpWebDriver.CloseWebDriver();
         }
     }
 }

@@ -45,7 +45,7 @@ namespace UserStories.AcceptanceTest.Steps
         [When(@"The user logs with a valid user")]
         public void WhenTheUserLogsWithAValidUser()
         {
-            this._homePage.LoginUser("mngr78423", "mAqagyz");
+            this._homePage.LoginUser("mngr78422", "rydAren");
         }
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace UserStories.AcceptanceTest.Steps
                 this._homePage.TakeScreenshot(ScenarioContext.Current.ScenarioInfo.Title);
             }
 
-            this._homePage.CloseWebDriver(ScenarioContext.Current.TestError == null);
+            this._homePage.CloseWebDriver();
         }
     }
 }

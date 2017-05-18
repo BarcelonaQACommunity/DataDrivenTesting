@@ -2,16 +2,16 @@
 using OpenQA.Selenium.Support.PageObjects;
 using PageObject.Factory.Contracts.Pages.Contracts;
 using PageObject.Models;
-using PageObject.SauceLabs.Factory.Base;
+using PageObject.Local.Factory.Base;
 
-namespace PageObject.SauceLabs.Factory.Pages
+namespace PageObject.Local.Factory.Pages
 {
     /// <summary>
     /// The Edit customer page.
     /// </summary>
-    /// <seealso cref="SlPageObjectBase" />
+    /// <seealso cref="LocalPageObjectBase" />
     /// <seealso cref="PageObject.Factory.Contracts.Pages.Contracts.IEditCustomerPage" />
-    public class SLEditCustomerPage : SlPageObjectBase, IEditCustomerPage
+    public class LocalEditCustomerPage : LocalPageObjectBase, IEditCustomerPage
     {
         #region .: Selenium WebDriver Elements :.
 
@@ -54,9 +54,9 @@ namespace PageObject.SauceLabs.Factory.Pages
         #endregion
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SLEditCustomerPage"/> class.
+        /// Initializes a new instance of the <see cref="LocalEditCustomerPage"/> class.
         /// </summary>
-        public SLEditCustomerPage()
+        public LocalEditCustomerPage()
         {
             PageFactory.InitElements(this.WebDriver, this);
         }

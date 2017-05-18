@@ -7,8 +7,8 @@
     <ProjectGuid>{EDAEF234-B288-4B18-9F32-99BD161EB7D2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PageObject.SauceLabs.Factory</RootNamespace>
-    <AssemblyName>PageObject.SauceLabs.Factory</AssemblyName>
+    <RootNamespace>PageObject.Local.Factory</RootNamespace>
+    <AssemblyName>PageObject.Local.Factory</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -50,14 +50,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Base\SLPageObjectBase.cs" />
-    <Compile Include="Pages\SLCustomerRegisteredPage.cs" />
-    <Compile Include="Pages\SLEditCustomerPage.cs" />
-    <Compile Include="Pages\SLHomePage.cs" />
-    <Compile Include="Pages\SLManagerPage.cs" />
-    <Compile Include="Pages\SLNewAccountPage.cs" />
-    <Compile Include="Pages\SLNewCustomerPage.cs" />
-    <Compile Include="Pages\SLSelectEditCustomerPage.cs" />
+    <Compile Include="Base\LocalPageObjectBase.cs" />
+    <Compile Include="Pages\LocalCustomerRegisteredPage.cs" />
+    <Compile Include="Pages\LocalEditCustomerPage.cs" />
+    <Compile Include="Pages\LocalHomePage.cs" />
+    <Compile Include="Pages\LocalManagerPage.cs" />
+    <Compile Include="Pages\LocalNewAccountPage.cs" />
+    <Compile Include="Pages\LocalNewCustomerPage.cs" />
+    <Compile Include="Pages\LocalSelectEditCustomerPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

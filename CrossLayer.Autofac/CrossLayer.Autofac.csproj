@@ -52,13 +52,9 @@
       <Project>{647FB283-AE5A-4B68-9799-4BE70D7BAF8B}</Project>
       <Name>PageObject.Factory.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PageObject.Factory\PageObject.Factory.csproj">
-      <Project>{A088A211-736D-48C8-8D8B-95F31064E975}</Project>
-      <Name>PageObject.Factory</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PageObject.SauceLabs.Factory\PageObject.SauceLabs.Factory.csproj">
+    <ProjectReference Include="..\PageObject.SauceLabs.Factory\PageObject.Local.Factory.csproj">
       <Project>{edaef234-b288-4b18-9f32-99bd161eb7d2}</Project>
-      <Name>PageObject.SauceLabs.Factory</Name>
+      <Name>PageObject.Local.Factory</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

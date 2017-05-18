@@ -1,16 +1,16 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using PageObject.Factory.Contracts.Pages.Contracts;
-using PageObject.SauceLabs.Factory.Base;
+using PageObject.Local.Factory.Base;
 
-namespace PageObject.SauceLabs.Factory.Pages
+namespace PageObject.Local.Factory.Pages
 {
     /// <summary>
     /// The select edit customer page.
     /// </summary>
-    /// <seealso cref="SlPageObjectBase" />
+    /// <seealso cref="LocalPageObjectBase" />
     /// <seealso cref="PageObject.Factory.Contracts.Pages.Contracts.ISelectEditCustomerPage" />
-    public class SLSelectEditCustomerPage : SlPageObjectBase, ISelectEditCustomerPage
+    public class LocalSelectEditCustomerPage : LocalPageObjectBase, ISelectEditCustomerPage
     {
         #region .: Selenium WebDriver Elements .:
 
@@ -31,7 +31,7 @@ namespace PageObject.SauceLabs.Factory.Pages
         /// <summary>
         /// Initializes a new instance of the <see cref="SLSelectEditCustomerPage"/> class.
         /// </summary>
-        public SLSelectEditCustomerPage()
+        public LocalSelectEditCustomerPage()
         {
             PageFactory.InitElements(this.WebDriver, this);
         }

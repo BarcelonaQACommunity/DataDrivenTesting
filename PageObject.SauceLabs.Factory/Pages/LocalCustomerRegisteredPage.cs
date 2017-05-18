@@ -4,18 +4,18 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using PageObject.Factory.Contracts.Pages.Contracts;
 using PageObject.Models;
-using PageObject.SauceLabs.Factory.Base;
+using PageObject.Local.Factory.Base;
 
-namespace PageObject.SauceLabs.Factory.Pages
+namespace PageObject.Local.Factory.Pages
 {
     using System.Threading;
 
     /// <summary>
     /// The customer registered page.
     /// </summary>
-    /// <seealso cref="SlPageObjectBase" />
+    /// <seealso cref="LocalPageObjectBase" />
     /// <seealso cref="PageObject.Factory.Contracts.Pages.Contracts.ICustomerRegisteredPage" />
-    public class SLCustomerRegisteredPage : SlPageObjectBase, ICustomerRegisteredPage
+    public class LocalCustomerRegisteredPage : LocalPageObjectBase, ICustomerRegisteredPage
     {
         private const string CustomerRegisteredHeader = "Customer Registered Successfully!!!";
         private const string CustomerRegisteredTitle = "Registered Customer details are as follows:";
@@ -26,9 +26,9 @@ namespace PageObject.SauceLabs.Factory.Pages
         private const string AlertError = "please fill all fields";
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SLCustomerRegisteredPage"/> class.
+        /// Initializes a new instance of the <see cref="LocalCustomerRegisteredPage"/> class.
         /// </summary>
-        public SLCustomerRegisteredPage()
+        public LocalCustomerRegisteredPage()
         {
             PageFactory.InitElements(this.WebDriver, this);
         }

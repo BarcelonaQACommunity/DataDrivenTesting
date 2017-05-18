@@ -83,14 +83,14 @@ this.ScenarioSetup(scenarioInfo);
         [TechTalk.SpecRun.ScenarioAttribute("The user can creates a new account, Variant 0", SourceLine=12)]
         public virtual void TheUserCanCreatesANewAccount_Variant0()
         {
-            this.TheUserCanCreatesANewAccount("29307", "Current", "500", ((string[])(null)));
+            this.TheUserCanCreatesANewAccount("72218", "Current", "500", ((string[])(null)));
 #line hidden
         }
         
         [TechTalk.SpecRun.ScenarioAttribute("The user can creates a new account, Variant 1", SourceLine=12)]
         public virtual void TheUserCanCreatesANewAccount_Variant1()
         {
-            this.TheUserCanCreatesANewAccount("29307", "Savings", "500", ((string[])(null)));
+            this.TheUserCanCreatesANewAccount("72218", "Savings", "500", ((string[])(null)));
 #line hidden
         }
         

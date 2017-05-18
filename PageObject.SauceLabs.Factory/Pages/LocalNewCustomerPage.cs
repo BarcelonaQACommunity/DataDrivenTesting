@@ -4,16 +4,16 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using PageObject.Factory.Contracts.Pages.Contracts;
 using PageObject.Models;
-using PageObject.SauceLabs.Factory.Base;
+using PageObject.Local.Factory.Base;
 
-namespace PageObject.SauceLabs.Factory.Pages
+namespace PageObject.Local.Factory.Pages
 {
     /// <summary>
     /// The NewCustomer page.
     /// </summary>
-    /// <seealso cref="SlPageObjectBase" />
+    /// <seealso cref="LocalPageObjectBase" />
     /// <seealso cref="PageObject.Factory.Contracts.Pages.Contracts.INewCustomerPage" />
-    public class SLNewCustomerPage : SlPageObjectBase, INewCustomerPage
+    public class LocalNewCustomerPage : LocalPageObjectBase, INewCustomerPage
     {
         private const string Male = "Male";
         private const string Female = "Female";
@@ -67,9 +67,9 @@ namespace PageObject.SauceLabs.Factory.Pages
         #endregion
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SLNewCustomerPage"/> class.
+        /// Initializes a new instance of the <see cref="LocalNewCustomerPage"/> class.
         /// </summary>
-        public SLNewCustomerPage()
+        public LocalNewCustomerPage()
         {
             PageFactory.InitElements(this.WebDriver, this);
         }

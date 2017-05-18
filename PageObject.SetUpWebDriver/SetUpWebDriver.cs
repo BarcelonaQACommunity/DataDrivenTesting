@@ -91,13 +91,8 @@ namespace PageObject.SetUpWebDriver
         /// <summary>
         /// Closes the chrome web driver.
         /// </summary>
-        public static void CloseWebDriver(bool isSauceLabs, bool isPassed)
+        public static void CloseWebDriver()
         {
-            if (isSauceLabs)
-            {
-                ((IJavaScriptExecutor)WebDriver).ExecuteScript("sauce:job-result=" + (isPassed ? "passed" : "failed"));
-            }
-
             WebDriver?.Dispose();
         }
     }

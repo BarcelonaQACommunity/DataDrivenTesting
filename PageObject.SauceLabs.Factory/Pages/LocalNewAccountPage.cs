@@ -3,16 +3,16 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 using PageObject.Factory.Contracts.Pages.Contracts;
-using PageObject.SauceLabs.Factory.Base;
+using PageObject.Local.Factory.Base;
 
-namespace PageObject.SauceLabs.Factory.Pages
+namespace PageObject.Local.Factory.Pages
 {
     /// <summary>
     /// The NewAccount page.
     /// </summary>
-    /// <seealso cref="SlPageObjectBase" />
+    /// <seealso cref="LocalPageObjectBase" />
     /// <seealso cref="PageObject.Factory.Contracts.Pages.Contracts.INewAccountPage" />
-    public class SLNewAccountPage : SlPageObjectBase, INewAccountPage
+    public class LocalNewAccountPage : LocalPageObjectBase, INewAccountPage
     {
         private const string CurrentAccount = "Current";
         private const string SavingsAccount = "Savings";
@@ -46,9 +46,9 @@ namespace PageObject.SauceLabs.Factory.Pages
         #endregion
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SLNewAccountPage"/> class.
+        /// Initializes a new instance of the <see cref="LocalNewAccountPage"/> class.
         /// </summary>
-        public SLNewAccountPage()
+        public LocalNewAccountPage()
         {
             PageFactory.InitElements(this.WebDriver, this);
         }

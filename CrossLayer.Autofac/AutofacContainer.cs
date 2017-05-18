@@ -1,7 +1,6 @@
 ﻿using Autofac;
 using PageObject.Factory.Contracts.Pages.Contracts;
-using PageObject.Factory.Pages;
-using PageObject.SauceLabs.Factory.Pages;
+using PageObject.Local.Factory.Pages;
 
 namespace CrossLayer.Autofac
 {
@@ -20,34 +19,19 @@ namespace CrossLayer.Autofac
         /// </summary>
         static AutofacContainer()
         {
-            AutofacContainerSelenium();
-            // AutofacContainerSauceLabs();
-        }
-
-        private static void AutofacContainerSelenium()
-        {
-            var buildContainer = new ContainerBuilder();
-            buildContainer.RegisterType<HomePage>().As<IHomePage>();
-            buildContainer.RegisterType<ManagerPage>().As<IManagerPage>();
-            buildContainer.RegisterType<NewCustomerPage>().As<INewCustomerPage>();
-            buildContainer.RegisterType<CustomerRegisteredPage>().As<ICustomerRegisteredPage>();
-            buildContainer.RegisterType<SelectEditCustomerPage>().As<ISelectEditCustomerPage>();
-            buildContainer.RegisterType<EditCustomerPage>().As<IEditCustomerPage>();
-            buildContainer.RegisterType<NewAccountPage>().As<INewAccountPage>();
-
-            AContainer = buildContainer.Build();
+            AutofacContainerSauceLabs();
         }
 
         private static void AutofacContainerSauceLabs()
         {
             var buildContainer = new ContainerBuilder();
-            buildContainer.RegisterType<SLHomePage>().As<IHomePage>();
-            buildContainer.RegisterType<SLManagerPage>().As<IManagerPage>();
-            buildContainer.RegisterType<SLNewCustomerPage>().As<INewCustomerPage>();
-            buildContainer.RegisterType<SLCustomerRegisteredPage>().As<ICustomerRegisteredPage>();
-            buildContainer.RegisterType<SLSelectEditCustomerPage>().As<ISelectEditCustomerPage>();
-            buildContainer.RegisterType<SLEditCustomerPage>().As<IEditCustomerPage>();
-            buildContainer.RegisterType<SLNewAccountPage>().As<INewAccountPage>();
+            buildContainer.RegisterType<LocalHomePage>().As<IHomePage>();
+            buildContainer.RegisterType<LocalManagerPage>().As<IManagerPage>();
+            buildContainer.RegisterType<LocalNewCustomerPage>().As<INewCustomerPage>();
+            buildContainer.RegisterType<LocalCustomerRegisteredPage>().As<ICustomerRegisteredPage>();
+            buildContainer.RegisterType<LocalSelectEditCustomerPage>().As<ISelectEditCustomerPage>();
+            buildContainer.RegisterType<LocalEditCustomerPage>().As<IEditCustomerPage>();
+            buildContainer.RegisterType<LocalNewAccountPage>().As<INewAccountPage>();
 
             AContainer = buildContainer.Build();
         }

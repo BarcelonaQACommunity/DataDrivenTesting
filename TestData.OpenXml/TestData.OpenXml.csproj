@@ -54,7 +54,7 @@
       <Project>{56F9F583-806C-4EA7-AA72-09FE612DEB13}</Project>
       <Name>PageObject.Models</Name>
     </ProjectReference>
-    <None Include="Data In\POModelsTemplate.xlsx" />
+    <EmbeddedResource Include="Data In\POModelsTemplate.xlsx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

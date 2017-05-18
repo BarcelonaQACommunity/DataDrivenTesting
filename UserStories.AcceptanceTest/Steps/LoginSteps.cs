@@ -3,6 +3,8 @@ using CrossLayer.Autofac;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PageObject.Factory.Contracts.Pages.Contracts;
 using TechTalk.SpecFlow;
+using TestData.OpenXml.Contracts;
+using System.Linq;
 using UserStories.AcceptanceTest.Steps.Base;
 
 namespace UserStories.AcceptanceTest.Steps
@@ -20,6 +22,9 @@ namespace UserStories.AcceptanceTest.Steps
         // Manager Page.
         private readonly IManagerPage _managerPage;
 
+        // Xml Repository.
+        private readonly IContentManager _contentManager;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="LoginSteps"/> class.
         /// </summary>
@@ -27,6 +32,7 @@ namespace UserStories.AcceptanceTest.Steps
         {
             this._homePage = AutofacContainer.AContainer.Resolve<IHomePage>(new NamedParameter("currentScenario", ScenarioContext.Current.ScenarioInfo.Title));
             this._managerPage = AutofacContainer.AContainer.Resolve<IManagerPage>();
+            this._contentManager = AutofacContainer.AContainer.Resolve <IContentManager>();
         }
 
         /// <summary>
@@ -45,7 +51,8 @@ namespace UserStories.AcceptanceTest.Steps
         [When(@"The user logs with a valid user")]
         public void WhenTheUserLogsWithAValidUser()
         {
-            this._homePage.LoginUser("mngr78422", "rydAren");
+            var test = this._contentManager.GetUserListFromXls().ToList().First();
+            this._homePage.LoginUser(test.UserId, test.Password);
         }
 
         /// <summary>

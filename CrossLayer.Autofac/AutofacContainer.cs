@@ -1,6 +1,8 @@
 ﻿using Autofac;
 using PageObject.Factory.Contracts.Pages.Contracts;
 using PageObject.Local.Factory.Pages;
+using TestData.OpenXml;
+using TestData.OpenXml.Contracts;
 
 namespace CrossLayer.Autofac
 {
@@ -32,6 +34,9 @@ namespace CrossLayer.Autofac
             buildContainer.RegisterType<LocalSelectEditCustomerPage>().As<ISelectEditCustomerPage>();
             buildContainer.RegisterType<LocalEditCustomerPage>().As<IEditCustomerPage>();
             buildContainer.RegisterType<LocalNewAccountPage>().As<INewAccountPage>();
+
+            // Repository
+            buildContainer.RegisterType<ContentManager>().As<IContentManager>();
 
             AContainer = buildContainer.Build();
         }

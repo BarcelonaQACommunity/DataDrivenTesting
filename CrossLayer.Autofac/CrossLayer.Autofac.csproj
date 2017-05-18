@@ -56,6 +56,10 @@
       <Project>{edaef234-b288-4b18-9f32-99bd161eb7d2}</Project>
       <Name>PageObject.Local.Factory</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TestData.OpenXml\TestData.OpenXml.csproj">
+      <Project>{22371007-41a1-47cb-bf5d-cf7729555e4d}</Project>
+      <Name>TestData.OpenXml</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

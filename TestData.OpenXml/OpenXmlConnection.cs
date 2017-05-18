@@ -45,8 +45,15 @@ namespace TestData.OpenXml
                         var i = 0;
                         foreach (var cell in row.Descendants<Cell>())
                         {
-                            dt.Rows[dt.Rows.Count - 1][i] = GetCellValue(doc, cell);
-                            i++;
+                            if (i < dt.Columns.Count)
+                            {
+                                dt.Rows[dt.Rows.Count - 1][i] = GetCellValue(doc, cell);
+                                i++;
+                            }
+                            else
+                            {
+                                break;
+                            }
                         }
                     }
                 }
@@ -54,6 +61,12 @@ namespace TestData.OpenXml
             return dt;
         }
 
+        /// <summary>
+        /// Gets the cell value.
+        /// </summary>
+        /// <param name="doc">The document.</param>
+        /// <param name="cell">The cell.</param>
+        /// <returns></returns>
         private static string GetCellValue(SpreadsheetDocument doc, CellType cell)
         {
             string value;
@@ -75,6 +88,7 @@ namespace TestData.OpenXml
         {
             return rw[property] is DBNull || rw[property].Equals("x") ? string.Empty : Convert.ToString(rw[property]);
         }
+
         internal static bool ParseBoolCell(DataRow rw, string property)
         {
             return !(rw[property] is DBNull) && Convert.ToBoolean(rw[property].ToString() == "1" ? "true" : "false");
@@ -116,8 +130,8 @@ namespace TestData.OpenXml
             {
                 var user = new User()
                 {
-                    UserId = ParseStringCell(rw, "NewsContainerUrl"),
-                    Password = ParseStringCell(rw, "Lead")
+                    UserId = ParseStringCell(rw, "UserId"),
+                    Password = ParseStringCell(rw, "Password")
                 };
                 userList.Add(user);
             }

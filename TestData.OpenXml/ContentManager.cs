@@ -11,18 +11,17 @@ namespace TestData.OpenXml
 {
     public class ContentManager : IContentManager
     {
-        private const string _xlsFilename = "POModelsTemplate.xlsx";
+        private const string _xlsPath = @"..\TestData.OpenXml\Data In\POModelsTemplate.xlsx";
 
         public ICollection<Customer> GetCustomerListFromXls()
         {
             ICollection<Customer> customersCollection;
             try
             {
-                string excelPath = Path.Combine(Environment.CurrentDirectory, @"Data In\", _xlsFilename);
-                var excelCustomerDt = OpenXmlConnection.ReadExcelSheet(excelPath, "Customer");
+                var excelCustomerDt = OpenXmlConnection.ReadExcelSheet(_xlsPath, "Customer");
                 customersCollection = OpenXmlConnection.ExcelMappingToCustomer(excelCustomerDt);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 customersCollection = null;
             }
@@ -34,15 +33,29 @@ namespace TestData.OpenXml
             ICollection<User> usersCollection;
             try
             {
-                string excelPath = Path.Combine(Environment.CurrentDirectory, @"Data In\", _xlsFilename);
-                var excelUserDt = OpenXmlConnection.ReadExcelSheet(excelPath, "User");
+                var excelUserDt = OpenXmlConnection.ReadExcelSheet(_xlsPath, "User");
                 usersCollection = OpenXmlConnection.ExcelMappingToUser(excelUserDt);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 usersCollection = null;
             }
             return usersCollection;
+        }
+
+        public User GetUserById(string userId)
+        {
+            User user;
+            try
+            {
+                var excelUserDt = OpenXmlConnection.ReadExcelSheet(_xlsPath, "User");
+                user = OpenXmlConnection.ExcelMappingToUser(excelUserDt).Single(x=> x.UserId.Equals(userId));
+            }
+            catch (Exception ex)
+            {
+                user = null;
+            }
+            return user;
         }
     }
 }

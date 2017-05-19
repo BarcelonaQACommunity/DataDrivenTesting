@@ -58,10 +58,8 @@ namespace PageObject.Local.Factory.Pages
         /// </summary>
         /// <param name="userId">The user identifier.</param>
         /// <param name="password">The password.</param>
-        public void LoginUser(string userId, string password)
+        public void LoginUser(User user)
         {
-            var user = new User { UserId = userId, Password = password };
-
             // Write the UserId.
             _userIdTextBox.SendKeys(user.UserId);
 

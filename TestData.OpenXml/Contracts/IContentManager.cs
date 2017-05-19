@@ -9,8 +9,10 @@ namespace TestData.OpenXml.Contracts
 {
     public interface IContentManager
     {
-        ICollection<Customer> GetCustomerListFromXls();
+        User GetFirstValidUser();
 
-        ICollection<User> GetUserListFromXls();
+        User GetUserById(string userId);
+
+        Customer GetCustomerByEmail(string customerEmail);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using PageObject.Factory.Contracts.Base.Contracts;
+using PageObject.Models;
 
 namespace PageObject.Factory.Contracts.Pages.Contracts
 {
@@ -18,7 +19,7 @@ namespace PageObject.Factory.Contracts.Pages.Contracts
         /// </summary>
         /// <param name="userId">The user identifier.</param>
         /// <param name="password">The password.</param>
-        void LoginUser(string userId, string password);
+        void LoginUser(User user);
 
         /// <summary>
         /// Switches to incorrect user login alert.

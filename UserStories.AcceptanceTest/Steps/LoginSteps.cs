@@ -2,9 +2,9 @@
 using CrossLayer.Autofac;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PageObject.Factory.Contracts.Pages.Contracts;
+using PageObject.Models;
 using TechTalk.SpecFlow;
 using TestData.OpenXml.Contracts;
-using System.Linq;
 using UserStories.AcceptanceTest.Steps.Base;
 
 namespace UserStories.AcceptanceTest.Steps
@@ -24,6 +24,8 @@ namespace UserStories.AcceptanceTest.Steps
 
         // Xml Repository.
         private readonly IContentManager _contentManager;
+
+        private User _validUser;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LoginSteps"/> class.
@@ -51,8 +53,10 @@ namespace UserStories.AcceptanceTest.Steps
         [When(@"The user logs with a valid user")]
         public void WhenTheUserLogsWithAValidUser()
         {
-            var test = this._contentManager.GetUserListFromXls().ToList().First();
-            this._homePage.LoginUser(test.UserId, test.Password);
+            _validUser = this._contentManager.GetFirstValidUser();
+            Assert.IsNotNull(_validUser, "Valid user was not found.");
+
+            this._homePage.LoginUser(_validUser);
         }
 
         /// <summary>
@@ -61,16 +65,19 @@ namespace UserStories.AcceptanceTest.Steps
         [When(@"The user logs with an invalid user")]
         public void WhenTheUserLogsWithAnInvalidUser()
         {
-            this._homePage.LoginUser("invalid", "invalid");
+            var invalidUser = this._contentManager.GetUserById("invalid");
+            Assert.IsNotNull(invalidUser, "UserId not found for invalid user.");
+
+            this._homePage.LoginUser(invalidUser);
         }
 
         /// <summary>
         /// Thens the user has logged correctly.
         /// </summary>
-        [Then(@"The user '(.*)' has logged correctly")]
-        public void ThenTheUserHasLoggedCorrectly(string userId)
+        [Then(@"The user has logged correctly")]
+        public void ThenTheUserHasLoggedCorrectly()
         {
-            Assert.AreEqual(string.Concat("Manger Id : ", userId), this._managerPage.GetWelcomeUserManager());
+            Assert.AreEqual(string.Concat("Manger Id : ", _validUser.UserId), this._managerPage.GetWelcomeUserManager());
         }
 
         /// <summary>

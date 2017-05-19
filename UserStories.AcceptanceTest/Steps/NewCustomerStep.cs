@@ -63,6 +63,7 @@ namespace UserStories.AcceptanceTest.Steps
         [When(@"The user creates a new customer with parameters '(.*)', '(.*)', '(.*)', '(.*)', '(.*)', '(.*)', '(.*)', '(.*)', '(.*)'")]
         public void WhenTheUserCreatesANewCustomerWithParameters(string name, string date, string gender, string address, string city, string state, string pin, string telephone, string password)
         {
+            //Use email for seek into db, if not this customer already is in use
             var random = new Random();
 
             var customer = new Customer

@@ -29,6 +29,16 @@ namespace TestData.OpenXml
             return GetCustomerListFromXls().SingleOrDefault(x => x.Email.Equals(customerEmail));
         }
 
+        public Customer GetFirstCustomer()
+        {
+            return GetCustomerListFromXls().FirstOrDefault();
+        }
+
+        public IEnumerable<Customer> GetCustomersByEmail(string customerEmail)
+        {
+            return GetCustomerListFromXls().Where(x => x.Email.Equals(customerEmail)).ToList();
+        }
+
         private ICollection<User> GetUserListFromXls()
         {
             return OpenXmlConnection.ExcelMappingToUser(GetExcelDatableBySheetName("User"));

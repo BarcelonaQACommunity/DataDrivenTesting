@@ -13,6 +13,12 @@ namespace TestData.OpenXml.Contracts
 
         User GetUserById(string userId);
 
+        Customer GetCustomerById(int customerId);
+
         Customer GetCustomerByEmail(string customerEmail);
+
+        Customer GetFirstCustomer();
+
+        IEnumerable<Customer> GetCustomersByEmail(string customerEmail);
     }
 }

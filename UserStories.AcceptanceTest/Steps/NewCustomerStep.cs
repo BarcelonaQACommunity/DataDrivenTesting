@@ -10,6 +10,7 @@ using UserStories.AcceptanceTest.Steps.Base;
 namespace UserStories.AcceptanceTest.Steps
 {
     using System.Threading;
+    using TestData.OpenXml.Contracts;
 
     /// <summary>
     /// The new customer step.
@@ -27,6 +28,11 @@ namespace UserStories.AcceptanceTest.Steps
         // Customer registered page.
         private readonly ICustomerRegisteredPage _customerRegisteredPage;
 
+        // Xml Repository.
+        private readonly IContentManager _contentManager;
+
+        private Customer _newCustomer;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="NewCustomerStep"/> class.
         /// </summary>
@@ -35,6 +41,7 @@ namespace UserStories.AcceptanceTest.Steps
             this._managerPage = AutofacContainer.AContainer.Resolve<IManagerPage>();
             this._newCustomerPage = AutofacContainer.AContainer.Resolve<INewCustomerPage>();
             this._customerRegisteredPage = AutofacContainer.AContainer.Resolve<ICustomerRegisteredPage>();
+            this._contentManager = AutofacContainer.AContainer.Resolve<IContentManager>();
         }
 
         /// <summary>
@@ -48,7 +55,7 @@ namespace UserStories.AcceptanceTest.Steps
         }
 
         /// <summary>
-        /// Whens the user creates a new customer with parameters.
+        /// Whens The user creates a new customer with given email.
         /// </summary>
         /// <param name="name">The name.</param>
         /// <param name="date">The date.</param>
@@ -59,28 +66,13 @@ namespace UserStories.AcceptanceTest.Steps
         /// <param name="pin">The pin.</param>
         /// <param name="telephone">The telephone.</param>
         /// <param name="password">The password.</param>
-        [When(@"The user edit a customer with parameters '(.*)', '(.*)', '(.*)', '(.*)', '(.*)', '(.*)', '(.*)', '(.*)', '(.*)'")]
-        [When(@"The user creates a new customer with parameters '(.*)', '(.*)', '(.*)', '(.*)', '(.*)', '(.*)', '(.*)', '(.*)', '(.*)'")]
-        public void WhenTheUserCreatesANewCustomerWithParameters(string name, string date, string gender, string address, string city, string state, string pin, string telephone, string password)
+        [When(@"The user creates a new customer with given email: '(.*)'")]
+        public void WhenTheUserCreatesANewCustomerWithGivenEmail(string email)
         {
-            //Use email for seek into db, if not this customer already is in use
-            var random = new Random();
+            //TODO: Diferent when, get 2 customers, same email -> Create first 1 and then the second with the same email -> FAIL
+            _newCustomer = _contentManager.GetCustomerByEmail(email);
 
-            var customer = new Customer
-            {
-                Name = name.Replace("empty", string.Empty),
-                Date = date.Replace("empty", string.Empty),
-                Gender = gender.Replace("empty", string.Empty),
-                Address = address.Replace("empty", string.Empty),
-                City = city.Replace("empty", string.Empty),
-                State = state.Replace("empty", string.Empty),
-                Pin = pin.Replace("empty", string.Empty),
-                Telephone = telephone.Replace("empty", string.Empty),
-                Email = string.Concat(random.Next(), "@", random.Next(), ".com"),
-                Password = password.Replace("empty", string.Empty)
-            };
-
-            this._newCustomerPage.AddNewCustomer(customer);
+            this._newCustomerPage.AddNewCustomer(_newCustomer);
         }
 
         /// <summary>
@@ -93,7 +85,7 @@ namespace UserStories.AcceptanceTest.Steps
         }
 
         /// <summary>
-        /// Thens the customer with parameters has been created.
+        /// The new customer has been created.
         /// </summary>
         /// <param name="name">The name.</param>
         /// <param name="date">The date.</param>
@@ -103,28 +95,16 @@ namespace UserStories.AcceptanceTest.Steps
         /// <param name="state">The state.</param>
         /// <param name="pin">The pin.</param>
         /// <param name="telephone">The telephone.</param>
-        [Then(@"The customer with parameters '(.*)', '(.*)', '(.*)', '(.*)', '(.*)', '(.*)', '(.*)', '(.*)' has been created")]
-        public void ThenTheCustomerWithParametersHasBeenCreated(string name, string date, string gender, string address, string city, string state, string pin, string telephone)
+        [Then(@"The new customer has been created")]
+        public void ThenTheCustomerHasBeenCreated()
         {
-            var customer = new Customer
-            {
-                Name = name,
-                Date = date,
-                Gender = gender,
-                Address = address,
-                City = city,
-                State = state,
-                Pin = pin,
-                Telephone = telephone,
-            };
-
-            Assert.IsTrue(this._customerRegisteredPage.IsCustomerRegistered(customer));
+            Assert.IsTrue(this._customerRegisteredPage.IsCustomerRegistered(_newCustomer));
         }
 
         /// <summary>
         /// Thens the customer cannot be created.
         /// </summary>
-        [Then(@"The customer cannot be created")]
+        [Then(@"The new customer cannot be created")]
         [Then(@"The customer cannot be edited")]
         public void ThenTheCustomerCannotBeCreated()
         {

@@ -61,8 +61,8 @@ namespace UserStories.AcceptanceTest.Features
             testRunner.CollectScenarioErrors();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("The user can creates a new customer", SourceLine=2)]
-        public virtual void TheUserCanCreatesANewCustomer()
+        [TechTalk.SpecRun.ScenarioAttribute("The user can create a new customer", SourceLine=2)]
+        public virtual void TheUserCanCreatesANewCustomerWithValidEmail(string customerEmail)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("The user can creates a new customer", ((string[])(null)));
 #line 3
@@ -74,20 +74,18 @@ this.ScenarioSetup(scenarioInfo);
 #line 6
  testRunner.When("The user goes to the new customer page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 7
- testRunner.And("The user creates a new customer with parameters \'Juan\', \'15121990\', \'Male\', \'Plaz" +
-                    "a Catalunya\', \'Barcelona\', \'Barcelona\', \'123456\', \'666123444\', \'111222333\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("The user creates a new customer with given email: \'xaviercasafont@hotmail.es\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 8
  testRunner.And("The user clicks the submit button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 9
- testRunner.Then("The customer with parameters \'Juan\', \'15121990\', \'Male\', \'Plaza Catalunya\', \'Barc" +
-                    "elona\', \'Barcelona\', \'123456\', \'666123444\' has been created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("The new customer has been created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
-        public virtual void TheUserTriesToCreateANewCustomerWithEmptyParameters(string name, string date, string gender, string address, string city, string state, string pin, string mobile, string password, string[] exampleTags)
+        public virtual void TheUserTriesToCreateCustomersWithEqualEmail(string customerEmail)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("The user tries to create a new customer with empty parameters", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("The user tries to create a new customer with an existing email");
 #line 11
 this.ScenarioSetup(scenarioInfo);
 #line 12
@@ -97,11 +95,11 @@ this.ScenarioSetup(scenarioInfo);
 #line 14
  testRunner.When("The user goes to the new customer page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 15
- testRunner.And(string.Format("The user creates a new customer with parameters", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("The user creates a 2 or more customers with given email: \'xaviercasafont@hotmail.es\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And "));
 #line 16
  testRunner.And("The user clicks the submit button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 17
- testRunner.Then("The customer cannot be created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("The 2nd customer cannot be created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

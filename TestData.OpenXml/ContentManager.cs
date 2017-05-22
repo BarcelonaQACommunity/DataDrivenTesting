@@ -36,7 +36,7 @@ namespace TestData.OpenXml
 
         public IEnumerable<Customer> GetCustomersByEmail(string customerEmail)
         {
-            return GetCustomerListFromXls().Where(x => x.Email.Equals(customerEmail)).ToList();
+            return GetCustomerListFromXls().Where(x => x.Email.Equals(customerEmail));
         }
 
         private ICollection<User> GetUserListFromXls()

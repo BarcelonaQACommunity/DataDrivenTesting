@@ -5,10 +5,12 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PageObject.Factory.Contracts.Pages.Contracts;
 using PageObject.Models;
 using TechTalk.SpecFlow;
+using System.Linq;
 using UserStories.AcceptanceTest.Steps.Base;
 
 namespace UserStories.AcceptanceTest.Steps
 {
+    using System.Linq;
     using System.Threading;
     using TestData.OpenXml.Contracts;
 
@@ -69,10 +71,25 @@ namespace UserStories.AcceptanceTest.Steps
         [When(@"The user creates a new customer with given email: '(.*)'")]
         public void WhenTheUserCreatesANewCustomerWithGivenEmail(string email)
         {
-            //TODO: Diferent when, get 2 customers, same email -> Create first 1 and then the second with the same email -> FAIL
             _newCustomer = _contentManager.GetCustomerByEmail(email);
 
             this._newCustomerPage.AddNewCustomer(_newCustomer);
+        }
+
+        [When(@"The user creates a 2 or more customers with given email: '(.*)'")]
+        public void WhenTheUserCreatesCustomerWithAlreadyInUseEmail(string email)
+        {
+            var customerList = _contentManager.GetCustomersByEmail(email).ToList();
+
+            Assert.IsTrue(customerList.Count >= 2, "2 or more customers with the same email were not found.");
+
+            foreach(var customer in customerList)
+            {
+                this._newCustomerPage.AddNewCustomer(customer);
+
+                Thread.Sleep(TimeSpan.FromSeconds(2));
+                this._managerPage.GoToAddNewCustomerPage();
+            }     
         }
 
         /// <summary>
@@ -104,8 +121,7 @@ namespace UserStories.AcceptanceTest.Steps
         /// <summary>
         /// Thens the customer cannot be created.
         /// </summary>
-        [Then(@"The new customer cannot be created")]
-        [Then(@"The customer cannot be edited")]
+        [Then(@"The 2nd customer cannot be created")]
         public void ThenTheCustomerCannotBeCreated()
         {
             this._customerRegisteredPage.SwichToAlert();

@@ -14,4 +14,4 @@ Scenario: The user tries to create a new customer with an existing email
 	When The user goes to the new customer page
 	And The user creates a new customer with a existing email
 	And The user clicks the submit button
-	Then The new customer cannot be created
+	Then The 2nd customer cannot be created

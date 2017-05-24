@@ -3,7 +3,7 @@
     /// <summary>
     /// The base step.
     /// </summary>
-    public class BaseStep
+    public class BaseStep : TechTalk.SpecFlow.Steps
     {
     }
 }

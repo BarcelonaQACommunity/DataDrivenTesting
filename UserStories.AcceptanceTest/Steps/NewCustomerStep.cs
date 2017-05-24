@@ -52,7 +52,7 @@ namespace UserStories.AcceptanceTest.Steps
         [When(@"The user goes to the new customer page")]
         public void WhenTheUserGoesToTheNewCustomerPage()
         {
-            Thread.Sleep(TimeSpan.FromSeconds(1));
+            Thread.Sleep(TimeSpan.FromSeconds(2));
             this._managerPage.GoToAddNewCustomerPage();
         }
 
@@ -61,35 +61,6 @@ namespace UserStories.AcceptanceTest.Steps
         /// </summary>
         /// <param name="email">The name.</param>
         /// 
-        [When(@"The user creates a valid customer (.*)")]
-        public void WhenTheUserCreatesANewValidCustomer(Customer customer)
-        {
-            this._newCustomerPage.AddNewCustomer(customer);
-        }
-
-        [When(@"The user creates a new customer with given email: '(.*)'")]
-        public void WhenTheUserCreatesANewCustomerWithGivenEmail(string email)
-        {
-            _newCustomer = _contentManager.GetCustomerByEmail(email);
-            Assert.IsNotNull(_newCustomer, "Customer with the given email not found");
-            this._newCustomerPage.AddNewCustomer(_newCustomer);
-        }
-
-        [When(@"The user creates a 2 or more customers with given email: '(.*)'")]
-        public void WhenTheUserCreatesCustomerWithAlreadyInUseEmail(string email)
-        {
-            var customerList = _contentManager.GetCustomersByEmail(email).ToList();
-
-            Assert.IsTrue(customerList.Count >= 2, "2 or more customers with the same email were not found.");
-
-            foreach(var customer in customerList)
-            {
-                this._newCustomerPage.AddNewCustomer(customer);
-
-                Thread.Sleep(TimeSpan.FromSeconds(2));
-                this._managerPage.GoToAddNewCustomerPage();
-            }     
-        }
 
         [When(@"The user tries to create all valid customers")]
         public void WhenTheUserCreatesCustomerAllValidCustomers()
@@ -100,13 +71,19 @@ namespace UserStories.AcceptanceTest.Steps
 
             foreach (var customer in customerList)
             {
-                //When(string.Format("The user creates a valid customer {0}", customer);
-
-                Thread.Sleep(TimeSpan.FromSeconds(2));
-                this._managerPage.GoToAddNewCustomerPage();
+                When(string.Format("The user creates a valid customer {0}", customer));          
+                When("The user clicks the submit button");
+                Then("The new customer has been created");
+                When("The user goes to the new customer page");
             }
         }
 
+        [When(@"The user creates a valid customer (.*)")]
+        public void WhenTheUserCreatesANewValidCustomer(Customer customer)
+        {
+            Thread.Sleep(TimeSpan.FromSeconds(2));
+            this._newCustomerPage.AddNewCustomer(customer);
+        }  
 
         /// <summary>
         /// Whens the user clicks the submit button.
@@ -114,6 +91,7 @@ namespace UserStories.AcceptanceTest.Steps
         [When(@"The user clicks the submit button")]
         public void WhenTheUserClicksTheSubmitButton()
         {
+            Thread.Sleep(TimeSpan.FromSeconds(2));
             this._newCustomerPage.ClickSubmitButton();
         }
 
@@ -124,6 +102,7 @@ namespace UserStories.AcceptanceTest.Steps
         [Then(@"The new customer has been created")]
         public void ThenTheCustomerHasBeenCreated()
         {
+            Thread.Sleep(TimeSpan.FromSeconds(2));
             Assert.IsTrue(this._customerRegisteredPage.IsCustomerRegistered(_newCustomer));
         }
 

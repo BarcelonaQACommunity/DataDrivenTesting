@@ -68,6 +68,8 @@ namespace UserStories.AcceptanceTest.Steps
         /// <param name="pin">The pin.</param>
         /// <param name="telephone">The telephone.</param>
         /// <param name="password">The password.</param>
+        /// 
+
         [When(@"The user creates a new customer with given email: '(.*)'")]
         public void WhenTheUserCreatesANewCustomerWithGivenEmail(string email)
         {

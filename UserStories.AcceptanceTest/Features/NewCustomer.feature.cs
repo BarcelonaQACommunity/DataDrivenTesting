@@ -62,9 +62,9 @@ namespace UserStories.AcceptanceTest.Features
         }
         
         [TechTalk.SpecRun.ScenarioAttribute("The user can create a new customer", SourceLine=2)]
-        public virtual void TheUserCanCreatesANewCustomerWithValidEmail(string customerEmail)
+        public virtual void TheUserCanCreateANewCustomer()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("The user can creates a new customer", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("The user can create a new customer", ((string[])(null)));
 #line 3
 this.ScenarioSetup(scenarioInfo);
 #line 4
@@ -83,9 +83,10 @@ this.ScenarioSetup(scenarioInfo);
             this.ScenarioCleanup();
         }
         
-        public virtual void TheUserTriesToCreateCustomersWithEqualEmail(string customerEmail)
+        [TechTalk.SpecRun.ScenarioAttribute("The user tries to create a new customer with an existing email", SourceLine=10)]
+        public virtual void TheUserTriesToCreateANewCustomerWithAnExistingEmail()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("The user tries to create a new customer with an existing email");
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("The user tries to create a new customer with an existing email", ((string[])(null)));
 #line 11
 this.ScenarioSetup(scenarioInfo);
 #line 12
@@ -95,7 +96,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 14
  testRunner.When("The user goes to the new customer page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 15
- testRunner.And(string.Format("The user creates a 2 or more customers with given email: \'xaviercasafont@hotmail.es\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And "));
+ testRunner.And("The user creates a new customer with a existing email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 16
  testRunner.And("The user clicks the submit button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 17

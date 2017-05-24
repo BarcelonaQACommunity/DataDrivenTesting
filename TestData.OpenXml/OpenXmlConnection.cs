@@ -72,7 +72,21 @@ namespace TestData.OpenXml
             string value;
             if (cell.DataType == null)
             {
-                value = cell.CellValue != null ? DateTime.FromOADate(int.Parse(cell.CellValue.InnerText)).ToShortDateString() : string.Empty;
+                if(cell.CellValue!= null)
+                {                
+                    if(cell.CellReference.InnerText.Equals("B2"))
+                    {
+                        value = DateTime.FromOADate(int.Parse(cell.CellValue.InnerText)).ToShortDateString();
+                    }
+                    else
+                    {
+                        value = cell.CellValue.InnerText;
+                    }
+                }
+                else
+                {
+                    value = string.Empty;
+                }            
             }
             else
             {
@@ -83,7 +97,12 @@ namespace TestData.OpenXml
             return doc.WorkbookPart.SharedStringTablePart.SharedStringTable.ChildElements.GetItem(int.Parse(value)).InnerText;
         }
 
-
+        /// <summary>
+        /// Gets the value of the property, if x means that should be empty (this is a hack for OpenXml, if blank cells are left returns unexpected results)
+        /// </summary>
+        /// <param name="rw">Data row.</param>
+        /// <param name="property">Property of the page object model</param>
+        /// <returns></returns>
         internal static string ParseStringCell(DataRow rw, string property)
         {
             return rw[property] is DBNull || rw[property].Equals("x") ? string.Empty : Convert.ToString(rw[property]);
@@ -99,6 +118,11 @@ namespace TestData.OpenXml
             return rw[property] is DBNull || rw[property].Equals("x") ? DateTime.MinValue : Convert.ToDateTime(rw[property]);
         }
 
+        internal static int ParseIntCell(DataRow rw, string property)
+        {
+            return rw[property] is DBNull || rw[property].Equals("x") ? 0 : Convert.ToInt32(rw[property]);
+        }
+
         internal static List<Customer> ExcelMappingToCustomer(DataTable dt)
         {
             var customerList = new List<Customer>();
@@ -106,19 +130,18 @@ namespace TestData.OpenXml
             {
                 var customer = new Customer()
                 {
-                    Name = ParseStringCell(rw, "NewsContainerUrl"),
-                    Date = ParseStringCell(rw, "Lead"),
-                    Gender = ParseStringCell(rw, "Teaser"),
-                    Address = ParseStringCell(rw, "TeaserImage"),
-                    City = ParseStringCell(rw, "DateOfNews"),
-                    State = ParseStringCell(rw, "EndDateOfNews"),
-                    Pin = ParseStringCell(rw, "Function"),
-                    Telephone = ParseStringCell(rw, "Location"),
-                    Email = ParseStringCell(rw, "AllOrganisations"),
-                    Password = ParseStringCell(rw, "Organisation"),
-
+                    Name = ParseStringCell(rw, "Name"),
+                    Date = ParseStringCell(rw, "Date"),
+                    Gender = ParseStringCell(rw, "Gender"),
+                    Address = ParseStringCell(rw, "Address"),
+                    City = ParseStringCell(rw, "City"),
+                    State = ParseStringCell(rw, "State"),
+                    Pin = ParseStringCell(rw, "Pin"),
+                    Telephone = ParseStringCell(rw, "Telephone"),
+                    Email = ParseStringCell(rw, "Email"),
+                    Password = ParseStringCell(rw, "Password")
                 };
-                customerList.Add(customer);
+                if(!customer.Name.Equals(string.Empty)) customerList.Add(customer);
             }
             return customerList;
         }

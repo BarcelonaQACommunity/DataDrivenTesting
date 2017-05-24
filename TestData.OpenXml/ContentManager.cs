@@ -34,6 +34,11 @@ namespace TestData.OpenXml
             return GetCustomerListFromXls().FirstOrDefault();
         }
 
+        public IEnumerable<Customer> GetAllValidCustomers()
+        {
+            return GetCustomerListFromXls().Where(x=> !string.IsNullOrEmpty(x.Email));
+        }
+
         public IEnumerable<Customer> GetCustomersByEmail(string customerEmail)
         {
             return GetCustomerListFromXls().Where(x => x.Email.Equals(customerEmail));

@@ -59,22 +59,19 @@ namespace UserStories.AcceptanceTest.Steps
         /// <summary>
         /// Whens The user creates a new customer with given email.
         /// </summary>
-        /// <param name="name">The name.</param>
-        /// <param name="date">The date.</param>
-        /// <param name="gender">The gender.</param>
-        /// <param name="address">The address.</param>
-        /// <param name="city">The city.</param>
-        /// <param name="state">The state.</param>
-        /// <param name="pin">The pin.</param>
-        /// <param name="telephone">The telephone.</param>
-        /// <param name="password">The password.</param>
+        /// <param name="email">The name.</param>
         /// 
+        [When(@"The user creates a valid customer (.*)")]
+        public void WhenTheUserCreatesANewValidCustomer(Customer customer)
+        {
+            this._newCustomerPage.AddNewCustomer(customer);
+        }
 
         [When(@"The user creates a new customer with given email: '(.*)'")]
         public void WhenTheUserCreatesANewCustomerWithGivenEmail(string email)
         {
             _newCustomer = _contentManager.GetCustomerByEmail(email);
-
+            Assert.IsNotNull(_newCustomer, "Customer with the given email not found");
             this._newCustomerPage.AddNewCustomer(_newCustomer);
         }
 
@@ -94,6 +91,23 @@ namespace UserStories.AcceptanceTest.Steps
             }     
         }
 
+        [When(@"The user tries to create all valid customers")]
+        public void WhenTheUserCreatesCustomerAllValidCustomers()
+        {
+            var customerList = _contentManager.GetAllValidCustomers().ToList();
+
+            Assert.IsTrue(customerList.Count > 0, "Customer list is empty");
+
+            foreach (var customer in customerList)
+            {
+                //When(string.Format("The user creates a valid customer {0}", customer);
+
+                Thread.Sleep(TimeSpan.FromSeconds(2));
+                this._managerPage.GoToAddNewCustomerPage();
+            }
+        }
+
+
         /// <summary>
         /// Whens the user clicks the submit button.
         /// </summary>
@@ -107,13 +121,6 @@ namespace UserStories.AcceptanceTest.Steps
         /// The new customer has been created.
         /// </summary>
         /// <param name="name">The name.</param>
-        /// <param name="date">The date.</param>
-        /// <param name="gender">The gender.</param>
-        /// <param name="address">The address.</param>
-        /// <param name="city">The city.</param>
-        /// <param name="state">The state.</param>
-        /// <param name="pin">The pin.</param>
-        /// <param name="telephone">The telephone.</param>
         [Then(@"The new customer has been created")]
         public void ThenTheCustomerHasBeenCreated()
         {

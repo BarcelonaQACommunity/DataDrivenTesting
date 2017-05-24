@@ -17,6 +17,8 @@ namespace TestData.OpenXml.Contracts
 
         Customer GetFirstCustomer();
 
+        IEnumerable<Customer> GetAllValidCustomers();
+
         IEnumerable<Customer> GetCustomersByEmail(string customerEmail);
     }
 }

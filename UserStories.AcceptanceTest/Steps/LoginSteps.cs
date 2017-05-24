@@ -49,7 +49,6 @@ namespace UserStories.AcceptanceTest.Steps
         /// <summary>
         /// Whens the user logs with a valid user.
         /// </summary>
-        [Given(@"The user logs with a valid user")]
         [When(@"The user logs with a valid user")]
         public void WhenTheUserLogsWithAValidUser()
         {
@@ -66,7 +65,7 @@ namespace UserStories.AcceptanceTest.Steps
         public void WhenTheUserLogsWithAnInvalidUser()
         {
             var invalidUser = this._contentManager.GetUserById("invalid");
-            Assert.IsNotNull(invalidUser, "UserId not found for invalid user.");
+            Assert.IsNotNull(invalidUser, "UserId not found.");
 
             this._homePage.LoginUser(invalidUser);
         }

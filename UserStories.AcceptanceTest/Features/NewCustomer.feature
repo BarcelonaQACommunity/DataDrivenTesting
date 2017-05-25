@@ -6,3 +6,4 @@ Scenario: Valid customers can be created
 	When The user logs with a valid user
 	And The user goes to the new customer page
 	When The user tries to create all valid customers
+	Then The customer validation has finished

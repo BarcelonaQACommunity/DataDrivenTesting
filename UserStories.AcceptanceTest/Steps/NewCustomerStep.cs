@@ -57,32 +57,36 @@ namespace UserStories.AcceptanceTest.Steps
         }
 
         /// <summary>
-        /// Whens The user creates a new customer with given email.
+        /// Whens The user tries to create all valid customers
         /// </summary>
-        /// <param name="email">The name.</param>
-        /// 
-
         [When(@"The user tries to create all valid customers")]
         public void WhenTheUserCreatesCustomerAllValidCustomers()
         {
             var customerList = _contentManager.GetAllValidCustomers().ToList();
+            var lastCustomerInList = customerList.Last();
 
             Assert.IsTrue(customerList.Count > 0, "Customer list is empty");
 
             foreach (var customer in customerList)
             {
-                When(string.Format("The user creates a valid customer {0}", customer));          
-                When("The user clicks the submit button");
-                Then("The new customer has been created");
-                When("The user goes to the new customer page");
+                Thread.Sleep(TimeSpan.FromSeconds(2));
+                When(string.Format(@"The user creates a customer with given email: '{0}'", customer.Email)); 
+                When(@"The user clicks the submit button");
+                Then(@"The new customer has been created");
+                if(lastCustomerInList != customer) When(@"The user goes to the new customer page");
             }
         }
 
-        [When(@"The user creates a valid customer (.*)")]
-        public void WhenTheUserCreatesANewValidCustomer(Customer customer)
+        /// <summary>
+        /// Whens The user creates a new customer with given email.
+        /// </summary>
+        /// <param name="email">The name.</param>
+        [When(@"The user creates a customer with given email: '(.*)'")]
+        public void WhenTheUserCreatesANewValidCustomer(string customerEmail)
         {
+            _newCustomer = _contentManager.GetCustomerByEmail(customerEmail);
             Thread.Sleep(TimeSpan.FromSeconds(2));
-            this._newCustomerPage.AddNewCustomer(customer);
+            this._newCustomerPage.AddNewCustomer(_newCustomer);
         }  
 
         /// <summary>
@@ -113,6 +117,15 @@ namespace UserStories.AcceptanceTest.Steps
         public void ThenTheCustomerCannotBeCreated()
         {
             this._customerRegisteredPage.SwichToAlert();
+        }
+
+        /// <summary>
+        /// Thens the customer validation has finished.
+        /// </summary>
+        [Then(@"The customer validation has finished")]
+        public void ThenTheCustomerValidationHasFinished()
+        {
+            // The Then was validated in the other step
         }
     }
 }
